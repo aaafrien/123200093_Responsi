@@ -98,7 +98,6 @@ price = xlsread(filename, 'D2:D51');
 distance = xlsread(filename, 'E2:E51');
 clean = xlsread(filename, 'I2:I51');
 value = xlsread(filename, 'N2:N51');
-dataset = [hostel price distance clean value];
 
 x = [price distance clean value];
 k = [0 0 1 1];
@@ -117,8 +116,7 @@ end;
 
 V= S/sum(S)
 V = V.';
-hasil = dataset(:,:);
-hasil('V') = V;
-sorted = sortrows(dataset, 'descend');
-convert = table2cell(sorted);
-set(handles.uitable2_093, 'Data', convert, 'ColumnName', {'Hostel Name', 'Price', 'Distance from city center', 'Cleanliness', 'Value for money'});
+dataset = [price distance clean value V];
+sort = sortrows(dataset, 5, 'descend');
+set(handles.uitable2_093, 'Data', sort, 'ColumnName', {'Price', 'Distance from city center', 'Cleanliness', 'Value for money', 'Score'});
+%gatau nampilin hostel name nya :(
